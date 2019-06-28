@@ -1,6 +1,6 @@
 # Bank Logger
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://travis-ci.com/DarkAlek/bank_logger.svg?branch=master)](https://travis-ci.com/DarkAlek/bank_logger)
 
 Bank Logger is the simple project which reads accounts data from my bank.
 
