@@ -12,4 +12,6 @@ Bank Logger is the simple project which reads accounts data from my bank.
 
  - Rewrite Javascript to Java
  - Write MORE Tests
+ - Add support to different login methods
+ - Research scraper effectiveness with different accounts
 
