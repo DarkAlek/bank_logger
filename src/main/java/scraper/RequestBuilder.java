@@ -5,7 +5,6 @@ import com.gargoylesoftware.htmlunit.WebRequest;
 import org.json.simple.JSONObject;
 
 import javax.script.ScriptException;
-import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;

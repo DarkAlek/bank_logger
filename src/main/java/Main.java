@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args){
-        TmobileScraper scraper = new TmobileScraper("", "");
+        TmobileScraper scraper = new TmobileScraper("", ""); // here login and password to your account :D
         try{
             scraper.enterLoginSite();
             scraper.enterLoginCredentials();
