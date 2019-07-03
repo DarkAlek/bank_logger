@@ -1,16 +1,13 @@
 package scraper;
 
 import com.gargoylesoftware.htmlunit.WebResponse;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import java.util.HashMap;
+import scraper.parser.LoginResponseParser;
 
 import static org.junit.Assert.*;
 

@@ -36,6 +36,14 @@ class CryptoEngine {
         return requestId.toString();
     }
 
+    String getClientTime(){
+        String unixTime = String.format("%.3f", System.currentTimeMillis()/1000.0);
+        if(unixTime.charAt(unixTime.length() - 1) == '0'){
+            unixTime = unixTime.substring(0, unixTime.length() - 1);
+        }
+        return unixTime;
+    }
+
 
 
 }

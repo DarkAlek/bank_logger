@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import scraper.parser.AccountResponseParser;
 
 import static org.junit.Assert.*;
 
@@ -24,7 +25,7 @@ public class PasswordResponseParserTest {
 
     @Test
     public void gatherRequiredResponseData() throws ParseException {
-        PasswordResponseParser testResponseParser = new PasswordResponseParser(passwordResponse);
+        AccountResponseParser testResponseParser = new AccountResponseParser(passwordResponse);
         testResponseParser.gatherRequiredResponseData();
         String expectedDataAsString = "[Account{accountName='Konto Freemium', accountBalance='5.81', accountCurrency='PLN', accountNumber='4324324324324324', accountOpenDate='2096-18-42', accountDescription='Rachunek oszczędnościowo-rozliczeniowy', accountOwner='ALEKSY MIŚTAL'}]";
         assertEquals(expectedDataAsString, testResponseParser.accountsFinalData.toString());

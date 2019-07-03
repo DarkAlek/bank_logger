@@ -1,4 +1,4 @@
-package scraper;
+package scraper.parser;
 
 import com.gargoylesoftware.htmlunit.WebResponse;
 import org.json.simple.JSONArray;

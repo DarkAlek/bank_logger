@@ -1,4 +1,4 @@
-package scraper;
+package scraper.parser;
 
 import com.gargoylesoftware.htmlunit.WebResponse;
 import models.Account;
@@ -10,14 +10,14 @@ import org.json.simple.parser.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PasswordResponseParser implements ResponseParser{
+public class AccountResponseParser implements ResponseParser{
 
     private final JSONObject responseJsonObject;
     private JSONArray addedAccountsList;
     public final List<Account> accountsFinalData = new ArrayList<>();
 
 
-    public PasswordResponseParser(WebResponse passwordResponse) throws ParseException {
+    public AccountResponseParser(WebResponse passwordResponse) throws ParseException {
         this.responseJsonObject = stringResponseToJsonResponse(passwordResponse.getContentAsString());
     }
 
