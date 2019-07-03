@@ -1,13 +1,13 @@
 package models;
 
 public class Account {
-    private String accountName;
-    private String accountBalance;
-    private String accountCurrency;
-    private String accountNumber;
-    private String accountOpenDate;
-    private String accountDescription;
-    private String accountOwner;
+    private final String accountName;
+    private final String accountBalance;
+    private final String accountCurrency;
+    private final String accountNumber;
+    private final String accountOpenDate;
+    private final String accountDescription;
+    private final String accountOwner;
 
     public Account(String accountName, String accountBalance, String accountCurrency, String accountNumber, String accountOpenDate, String accountDescription, String accountOwner) {
         this.accountName = accountName;

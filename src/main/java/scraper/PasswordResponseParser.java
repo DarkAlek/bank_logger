@@ -14,7 +14,7 @@ public class PasswordResponseParser implements ResponseParser{
 
     private final JSONObject responseJsonObject;
     private JSONArray addedAccountsList;
-    public List<Account> accountsFinalData = new ArrayList<>();
+    public final List<Account> accountsFinalData = new ArrayList<>();
 
 
     public PasswordResponseParser(WebResponse passwordResponse) throws ParseException {

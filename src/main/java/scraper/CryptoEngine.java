@@ -8,31 +8,30 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 
-public class CryptoEngine {
+class CryptoEngine {
 
-    private ScriptEngineManager manager = new ScriptEngineManager();
-    private ScriptEngine engine;
     private Invocable invocable;
 
-    public CryptoEngine() throws FileNotFoundException, ScriptException {
-        engine = manager.getEngineByName("JavaScript");
+    CryptoEngine() throws FileNotFoundException, ScriptException {
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
         String file = getClass().getClassLoader().getResource("javascript_method_provider.js").getFile();
         Reader reader = new FileReader(file);
         engine.eval(reader);
         invocable = (Invocable) engine;
     }
 
-    public String getPasswordHash(String password) throws ScriptException, NoSuchMethodException {
+    String getPasswordHash(String password) throws ScriptException, NoSuchMethodException {
         Object passwordHash = invocable.invokeFunction("get_password_hash", password);
         return passwordHash.toString();
     }
 
-    public String getIanZitoHash(String requestPayload) throws ScriptException, NoSuchMethodException {
+    String getIanZitoHash(String requestPayload) throws ScriptException, NoSuchMethodException {
         Object ianZitoHash = invocable.invokeFunction("get_ian_zito", requestPayload);
         return ianZitoHash.toString();
     }
 
-    public String getRequestId() throws ScriptException, NoSuchMethodException {
+    String getRequestId() throws ScriptException, NoSuchMethodException {
         Object requestId = invocable.invokeFunction("get_request_id");
         return requestId.toString();
     }

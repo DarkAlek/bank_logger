@@ -11,9 +11,9 @@ import java.util.HashMap;
 public class LoginResponseParser implements ResponseParser {
 
     private final WebResponse loginResponse;
-    protected final JSONObject responseJsonObject;
-    protected final String password;
-    public HashMap<String, String> responseRequiredData = new HashMap<>();
+    private final JSONObject responseJsonObject;
+    private final String password;
+    public final HashMap<String, String> responseRequiredData = new HashMap<>();
 
 
     public LoginResponseParser(WebResponse loginResponse, String password) throws ParseException {
