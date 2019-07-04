@@ -20,6 +20,7 @@ class RequestBuilder {
     // make seed inside javascript random OK
 
     private static CryptoEngine cryptoEngine;
+    private static final String BASE_URL = "https://system.t-mobilebankowe.pl";
 
     static {
         try {
@@ -32,7 +33,7 @@ class RequestBuilder {
     }
 
     static WebRequest createBaseSiteRequest() throws MalformedURLException {
-        URL uri = new URL(new URL(Consts.BASE_URL), "web/login");
+        URL uri = new URL(new URL(BASE_URL), "web/login");
         WebRequest request = new WebRequest(uri, HttpMethod.GET);
         Map<String, String> requestHeaders = new LinkedHashMap<>();
         addInitRequestsHeaders(requestHeaders);
@@ -41,7 +42,7 @@ class RequestBuilder {
     }
 
     static WebRequest createCampaignGetSiteRequest() throws MalformedURLException, ScriptException, NoSuchMethodException {
-        URL uri = new URL(new URL(Consts.BASE_URL), "tmub/api/campaign_get");
+        URL uri = new URL(new URL(BASE_URL), "tmub/api/campaign_get");
         WebRequest request = new WebRequest(uri, HttpMethod.POST);
         Map<String, String> requestHeaders = new LinkedHashMap<>();
         addInitRequestsHeaders(requestHeaders);
@@ -56,7 +57,7 @@ class RequestBuilder {
     }
 
     static WebRequest createConfigSiteRequest() throws MalformedURLException, ScriptException, NoSuchMethodException {
-        URL uri = new URL(new URL(Consts.BASE_URL), "tmub/api/config");
+        URL uri = new URL(new URL(BASE_URL), "tmub/api/config");
         WebRequest request = new WebRequest(uri, HttpMethod.POST);
         Map<String, String> requestHeaders = new LinkedHashMap<>();
         addInitRequestsHeaders(requestHeaders);
@@ -72,7 +73,7 @@ class RequestBuilder {
 
 
     static WebRequest createLoginCredentialRequest(String login) throws MalformedURLException, ScriptException, NoSuchMethodException {
-        URL uri = new URL(new URL(Consts.BASE_URL), "tmub/api/customer_web_login/prepare");
+        URL uri = new URL(new URL(BASE_URL), "tmub/api/customer_web_login/prepare");
         WebRequest request = new WebRequest(uri, HttpMethod.POST);
         Map<String, String> requestHeaders = new LinkedHashMap<>();
         addTargetRequestsHeaders(requestHeaders);
@@ -89,7 +90,7 @@ class RequestBuilder {
     }
 
     static WebRequest createPasswordCredentialRequest(HashMap<String, String> requiredData) throws MalformedURLException, ScriptException, NoSuchMethodException {
-        URL uri = new URL(new URL(Consts.BASE_URL), "tmub/api/customer_web_login/password_masked");
+        URL uri = new URL(new URL(BASE_URL), "tmub/api/customer_web_login/password_masked");
         WebRequest request = new WebRequest(uri, HttpMethod.POST);
         Map<String, String> requestHeaders = new LinkedHashMap<>();
         addTargetRequestsHeaders(requestHeaders);
