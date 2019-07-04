@@ -28,13 +28,15 @@ public class TmobileScraper {
         this.client = client;
     }
 
-    public void enterLoginSite() throws IOException, ScriptException, NoSuchMethodException {
+    public String enterLoginSite() throws IOException, ScriptException, NoSuchMethodException {
         WebRequest baseSiteRequest = RequestBuilder.createBaseSiteRequest();
         WebRequest campaignGetSiteRequest = RequestBuilder.createCampaignGetSiteRequest();
         WebRequest configSiteRequest = RequestBuilder.createConfigSiteRequest();
-        client.getPage(baseSiteRequest).getWebResponse();
-        client.getPage(campaignGetSiteRequest).getWebResponse();
-        client.getPage(configSiteRequest).getWebResponse();
+        StringBuilder statusCodes = new StringBuilder();
+        statusCodes.append(client.getPage(baseSiteRequest).getWebResponse().getStatusCode());
+        statusCodes.append(client.getPage(campaignGetSiteRequest).getWebResponse().getStatusCode());
+        statusCodes.append(client.getPage(configSiteRequest).getWebResponse().getStatusCode());
+        return statusCodes.toString();
     }
 
     public HashMap<String, String> enterLoginCredentials() throws IOException, ParseException, ScriptException, NoSuchMethodException {

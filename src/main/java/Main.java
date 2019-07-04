@@ -30,7 +30,7 @@ public class Main {
             if(e instanceof FailingHttpStatusCodeException)
                 System.out.println("ERROR: Failing http status code [" + ((FailingHttpStatusCodeException) e).getStatusCode() + "]");
             if(e instanceof NullPointerException)
-                System.out.println("ERROR: Probably problem with gathering data from response");
+                System.out.println("ERROR: Probably problem with gathering data from response [e.g. wrong credentials]");
             e.printStackTrace();
         }
     }
