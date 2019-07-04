@@ -6,5 +6,5 @@ import org.json.simple.parser.ParseException;
 public interface ResponseParser {
 
     JSONObject stringResponseToJsonResponse(String stringResponse) throws ParseException;
-    void gatherRequiredResponseData();
+    Object gatherRequiredResponseData();
 }

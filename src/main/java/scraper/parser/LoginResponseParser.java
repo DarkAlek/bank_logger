@@ -27,11 +27,12 @@ public class LoginResponseParser implements ResponseParser {
         return (JSONObject) jsonParser.parse(stringResponse);
     }
 
-    public void gatherRequiredResponseData(){
+    public HashMap<String, String> gatherRequiredResponseData(){
         responseRequiredData.put("maskedPassword", extractMaskedPassword());
         responseRequiredData.put("flowId", extractFlowId());
         responseRequiredData.put("actionToken", extractActionToken());
         responseRequiredData.put("xSessionId", extractXSessionId());
+        return responseRequiredData;
     }
 
     private String extractMaskedPassword(){

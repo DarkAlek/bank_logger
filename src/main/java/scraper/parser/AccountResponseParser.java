@@ -27,7 +27,7 @@ public class AccountResponseParser implements ResponseParser{
         return (JSONObject) jsonParser.parse(stringResponse);
     }
 
-    public void gatherRequiredResponseData() {
+    public List<Account> gatherRequiredResponseData() {
         extractAccountsList();
         for (Object item : addedAccountsList) {
             JSONObject jsonItem = (JSONObject) item;
@@ -40,6 +40,7 @@ public class AccountResponseParser implements ResponseParser{
                     extractAccountDescription(jsonItem),
                     extractAccountOwner(jsonItem)));
         }
+        return accountsFinalData;
     }
 
     private String extractAccountName(JSONObject jsonItem) {

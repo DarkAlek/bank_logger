@@ -43,16 +43,14 @@ public class TmobileScraper {
         WebRequest enterLoginCredentialsRequest = RequestBuilder.createLoginCredentialRequest(login);
         WebResponse enterLoginCredentialsResponse = client.getPage(enterLoginCredentialsRequest).getWebResponse();
         responseParser = new LoginResponseParser(enterLoginCredentialsResponse, password);
-        responseParser.gatherRequiredResponseData();
-        return ((LoginResponseParser)responseParser).responseRequiredData;
+        return ((LoginResponseParser)responseParser).gatherRequiredResponseData();
     }
 
     public List<Account> enterPasswordCredentials(HashMap<String, String> requiredData) throws IOException, ParseException, ScriptException, NoSuchMethodException {
         WebRequest enterPasswordCredentialsRequest = RequestBuilder.createPasswordCredentialRequest(requiredData);
         WebResponse enterPasswordCredentialsResponse = client.getPage(enterPasswordCredentialsRequest).getWebResponse();
         responseParser = new AccountResponseParser(enterPasswordCredentialsResponse);
-        responseParser.gatherRequiredResponseData();
-        return ((AccountResponseParser)responseParser).accountsFinalData;
+        return ((AccountResponseParser)responseParser).gatherRequiredResponseData();
     }
 
 }
