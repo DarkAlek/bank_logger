@@ -1,6 +1,6 @@
 # Bank Logger
 
-[![Build Status](https://travis-ci.com/DarkAlek/bank_logger.svg?branch=master)](https://travis-ci.com/DarkAlek/bank_logger)
+[![Build Status](https://travis-ci.com/DarkAlek/bank_logger.svg?branch=master)](https://travis-ci.com/DarkAlek/bank_logger) <--- Tests failing because of blank credentials :stuck_out_tongue_winking_eye:
 
 Bank Logger is the simple project which reads accounts data from my bank.
 
