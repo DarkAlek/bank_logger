@@ -4,7 +4,7 @@
 
 Bank Logger is the simple project which reads accounts data from my bank.
 
-  - Just pass your login and password to scraper constructor.
+  - Just pass your login and password into Credentials class.
   - Program should out of the box log in to your bank account and read some basic info about your open accounts.
   
 
