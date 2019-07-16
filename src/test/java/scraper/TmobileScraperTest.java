@@ -2,7 +2,6 @@ package scraper;
 
 import models.Account;
 import org.json.simple.parser.ParseException;
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.script.ScriptException;
@@ -17,24 +16,17 @@ import static scraper.Credentials.STATIC_PASSWORD;
 public class TmobileScraperTest extends BaseScraperTest {
 
   private final TmobileScraper scraper = new TmobileScraper(STATIC_LOGIN, STATIC_PASSWORD, client);
-  private String statusCodes;
   private HashMap<String, String> requiredData;
-  private List<Account> accounts;
-
-  @Before
-  public void init() throws NoSuchMethodException, ScriptException, ParseException, IOException {
-    statusCodes = scraper.enterLoginSite();
-    requiredData = scraper.enterLoginCredentials();
-    accounts = scraper.enterPasswordCredentials(requiredData);
-  }
 
   @Test
-  public void enterLoginSite() {
+  public void enterLoginSite() throws NoSuchMethodException, ScriptException, IOException {
+    String statusCodes = scraper.enterLoginSite();
     assertEquals("200200200", statusCodes);
   }
 
   @Test
-  public void enterLoginCredentials() {
+  public void enterLoginCredentials() throws NoSuchMethodException, ScriptException, ParseException, IOException {
+    requiredData = scraper.enterLoginCredentials();
     assertEquals("[xSessionId, maskedPassword, actionToken, flowId]", requiredData.keySet().toString());
     assertNotNull(requiredData.get("xSessionId"));
     assertNotNull(requiredData.get("maskedPassword"));
@@ -44,7 +36,8 @@ public class TmobileScraperTest extends BaseScraperTest {
   }
 
   @Test
-  public void enterPasswordCredentials() {
+  public void enterPasswordCredentials() throws NoSuchMethodException, ScriptException, ParseException, IOException {
+    List<Account> accounts = scraper.enterPasswordCredentials(requiredData);
     assertNotNull(accounts);
     assertTrue(accounts.size() > 0);
     assertNotNull(accounts.get(0).accountName);
