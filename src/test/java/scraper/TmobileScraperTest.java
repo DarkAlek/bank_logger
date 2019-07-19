@@ -1,5 +1,6 @@
 package scraper;
 
+import com.gargoylesoftware.htmlunit.WebClient;
 import models.Account;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
@@ -15,26 +16,28 @@ import static org.junit.Assert.*;
 import static scraper.Credentials.STATIC_LOGIN;
 import static scraper.Credentials.STATIC_PASSWORD;
 
-public class TmobileScraperTest extends BaseScraperTest {
+public class TmobileScraperTest {
 
-  private final TmobileScraper scraper = new TmobileScraper(STATIC_LOGIN, STATIC_PASSWORD, client);
-  private HashMap<String, String> requiredData;
+  private WebClient client;
 
   @Before
   public void init() throws FileNotFoundException, ScriptException {
-    CryptoEngine.setInvocable(initInvocableEngine());
+    this.client = InitTool.initClient();
+    CryptoEngine.setInvocable(InitTool.initInvocableEngine());
   }
 
   @Test
   public void enterLoginSite() throws NoSuchMethodException, ScriptException, IOException {
+    TmobileScraper scraper = new TmobileScraper(STATIC_LOGIN, STATIC_PASSWORD, client);
     String statusCodes = scraper.enterLoginSite();
     assertEquals("200200200", statusCodes);
   }
 
   @Test
   public void enterLoginCredentials() throws NoSuchMethodException, ScriptException, ParseException, IOException {
+    TmobileScraper scraper = new TmobileScraper(STATIC_LOGIN, STATIC_PASSWORD, client);
     scraper.enterLoginSite();
-    requiredData = scraper.enterLoginCredentials();
+    HashMap<String, String> requiredData = scraper.enterLoginCredentials();
     assertEquals("[xSessionId, maskedPassword, actionToken, flowId]", requiredData.keySet().toString());
     assertNotNull(requiredData.get("xSessionId"));
     assertNotNull(requiredData.get("maskedPassword"));
@@ -45,10 +48,9 @@ public class TmobileScraperTest extends BaseScraperTest {
 
   @Test
   public void enterPasswordCredentials() throws NoSuchMethodException, ScriptException, ParseException, IOException {
-    if(requiredData == null){
-      scraper.enterLoginSite();
-      requiredData = scraper.enterLoginCredentials();
-    }
+    TmobileScraper scraper = new TmobileScraper(STATIC_LOGIN, STATIC_PASSWORD, client);
+    scraper.enterLoginSite();
+    HashMap<String, String> requiredData = scraper.enterLoginCredentials();
     List<Account> accounts = scraper.enterPasswordCredentials(requiredData);
     assertNotNull(accounts);
     assertTrue(accounts.size() > 0);

@@ -7,6 +7,10 @@ public class CryptoEngine {
 
   private static Invocable invocable;
 
+  public static void setInvocable(Invocable invocable) {
+    CryptoEngine.invocable = invocable;
+  }
+
   public static String getPasswordHash(String password) throws ScriptException, NoSuchMethodException {
     Object passwordHash = getInvocable().invokeFunction("get_password_hash", password);
     return passwordHash.toString();
@@ -41,9 +45,5 @@ public class CryptoEngine {
 
   private static Invocable getInvocable() {
     return invocable;
-  }
-
-  public static void setInvocable(Invocable invocable) {
-    CryptoEngine.invocable = invocable;
   }
 }
