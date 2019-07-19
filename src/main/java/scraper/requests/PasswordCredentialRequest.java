@@ -1,4 +1,4 @@
-package scraper.requestbuilders;
+package scraper.requests;
 
 import com.gargoylesoftware.htmlunit.HttpMethod;
 import com.gargoylesoftware.htmlunit.WebRequest;

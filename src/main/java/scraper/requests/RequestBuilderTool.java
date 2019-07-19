@@ -1,4 +1,4 @@
-package scraper.requestbuilders;
+package scraper.requests;
 
 import org.json.simple.JSONObject;
 import scraper.CryptoEngine;

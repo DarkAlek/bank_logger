@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import scraper.parser.LoginResponseParser;
 import scraper.parser.AccountResponseParser;
-import scraper.requestbuilders.*;
+import scraper.requests.*;
 
 import javax.script.ScriptException;
 import java.io.IOException;
