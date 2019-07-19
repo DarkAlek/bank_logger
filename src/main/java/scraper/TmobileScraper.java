@@ -31,22 +31,22 @@ public class TmobileScraper {
   }
 
   public String enterLoginSite() throws IOException, ScriptException, NoSuchMethodException {
-    WebRequest baseSiteRequest = (new BaseSiteRequestBuilder()).buildRequest();
-    WebRequest campaignGetSiteRequest = (new CampaignGetSiteRequestBuilder()).buildRequest();
-    WebRequest configSiteRequest = (new ConfigSiteRequestBuilder()).buildRequest();
+    WebRequest baseSiteRequest = (new BaseSiteRequest()).buildRequest();
+    WebRequest campaignGetSiteRequest = (new CampaignGetSiteRequest()).buildRequest();
+    WebRequest configSiteRequest = (new ConfigSiteRequest()).buildRequest();
     return String.valueOf(client.getPage(baseSiteRequest).getWebResponse().getStatusCode()) +
             client.getPage(campaignGetSiteRequest).getWebResponse().getStatusCode() +
             client.getPage(configSiteRequest).getWebResponse().getStatusCode();
   }
 
   public HashMap<String, String> enterLoginCredentials() throws IOException, ParseException, ScriptException, NoSuchMethodException {
-    WebRequest enterLoginCredentialsRequest = (new LoginCredentialRequestBuilder(login)).buildRequest();
+    WebRequest enterLoginCredentialsRequest = (new LoginCredentialRequest()).buildRequest(login);
     WebResponse enterLoginCredentialsResponse = client.getPage(enterLoginCredentialsRequest).getWebResponse();
     return extractRequiredLoginResponseData(enterLoginCredentialsResponse);
   }
 
   public List<Account> enterPasswordCredentials(HashMap<String, String> requiredData) throws IOException, ParseException, ScriptException, NoSuchMethodException {
-    WebRequest enterPasswordCredentialsRequest = (new PasswordCredentialRequestBuilder(requiredData)).buildRequest();
+    WebRequest enterPasswordCredentialsRequest = (new PasswordCredentialRequest()).buildRequest(requiredData);
     WebResponse enterPasswordCredentialsResponse = client.getPage(enterPasswordCredentialsRequest).getWebResponse();
     return extractRequiredAccountResponseData(enterPasswordCredentialsResponse);
   }

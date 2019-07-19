@@ -2,9 +2,11 @@ package scraper;
 
 import models.Account;
 import org.json.simple.parser.ParseException;
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.script.ScriptException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +20,11 @@ public class TmobileScraperTest extends BaseScraperTest {
   private final TmobileScraper scraper = new TmobileScraper(STATIC_LOGIN, STATIC_PASSWORD, client);
   private HashMap<String, String> requiredData;
 
+  @Before
+  public void init() throws FileNotFoundException, ScriptException {
+    CryptoEngine.setInvocable(initInvocableEngine());
+  }
+
   @Test
   public void enterLoginSite() throws NoSuchMethodException, ScriptException, IOException {
     String statusCodes = scraper.enterLoginSite();
@@ -26,6 +33,7 @@ public class TmobileScraperTest extends BaseScraperTest {
 
   @Test
   public void enterLoginCredentials() throws NoSuchMethodException, ScriptException, ParseException, IOException {
+    scraper.enterLoginSite();
     requiredData = scraper.enterLoginCredentials();
     assertEquals("[xSessionId, maskedPassword, actionToken, flowId]", requiredData.keySet().toString());
     assertNotNull(requiredData.get("xSessionId"));
@@ -37,6 +45,10 @@ public class TmobileScraperTest extends BaseScraperTest {
 
   @Test
   public void enterPasswordCredentials() throws NoSuchMethodException, ScriptException, ParseException, IOException {
+    if(requiredData == null){
+      scraper.enterLoginSite();
+      requiredData = scraper.enterLoginCredentials();
+    }
     List<Account> accounts = scraper.enterPasswordCredentials(requiredData);
     assertNotNull(accounts);
     assertTrue(accounts.size() > 0);

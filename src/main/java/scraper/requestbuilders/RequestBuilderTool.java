@@ -1,22 +1,13 @@
 package scraper.requestbuilders;
 
-import com.gargoylesoftware.htmlunit.WebRequest;
 import org.json.simple.JSONObject;
 import scraper.CryptoEngine;
 
-import javax.script.ScriptException;
 import java.util.Map;
 
-abstract class RequestBuilder {
+abstract class RequestBuilderTool {
 
   static final String BASE_URL = "https://system.t-mobilebankowe.pl";
-  WebRequest request;
-
-  protected void addHeaders() throws ScriptException, NoSuchMethodException {}
-  protected void addPayload() throws ScriptException, NoSuchMethodException {}
-  public WebRequest buildRequest() throws ScriptException, NoSuchMethodException {
-    return request;
-  }
 
   static void addInitRequestsHeaders(Map<String, String> requestHeaders){
     requestHeaders.put("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0");

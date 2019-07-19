@@ -11,53 +11,44 @@ import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LoginCredentialRequestBuilder extends RequestBuilder {
+public class LoginCredentialRequest {
 
+  private final WebRequest request;
   private String requestId;
-  private final String login;
-  private Map<String, String> requestHeaders;
+  private final Map<String, String> requestHeaders = new LinkedHashMap<>();
 
-  public LoginCredentialRequestBuilder(String login) throws MalformedURLException {
-    this.login = login;
-    URL uri = new URL(new URL(BASE_URL), "tmub/api/customer_web_login/prepare");
+  public LoginCredentialRequest() throws MalformedURLException {
+    URL uri = new URL(new URL(RequestBuilderTool.BASE_URL), "tmub/api/customer_web_login/prepare");
     request = new WebRequest(uri, HttpMethod.POST);
   }
 
+  public WebRequest buildRequest(String login) throws ScriptException, NoSuchMethodException {
+    addHeaders();
+    addPayload(createLoginCredentialPayload(login));
+    return request;
+  }
 
-  @Override
-  protected void addHeaders() throws ScriptException, NoSuchMethodException {
-    requestHeaders = new LinkedHashMap<>();
-    addTargetRequestsHeaders(requestHeaders);
+  private void addHeaders() throws ScriptException, NoSuchMethodException {
+    RequestBuilderTool.addTargetRequestsHeaders(requestHeaders);
     requestHeaders.put("DNT", "1");
     requestId = CryptoEngine.getRequestId() + "_1(3)_u(189)";
     requestHeaders.put("X-Request-Id", requestId);
   }
 
-  @Override
-  protected void addPayload() throws ScriptException, NoSuchMethodException {
-    JSONObject dataPayload = createLoginCredentialPayload(login, requestId);
+  private void addPayload(JSONObject dataPayload) throws ScriptException, NoSuchMethodException {
     requestHeaders.put("X-Ian-Zito", CryptoEngine.getIanZitoHash(dataPayload.toJSONString()));
     request.setAdditionalHeaders(requestHeaders);
     request.setRequestBody(dataPayload.toJSONString());
   }
 
-  @Override
-  public WebRequest buildRequest() throws ScriptException, NoSuchMethodException {
-    addHeaders();
-    addPayload();
-    return request;
-  }
-
-  private static JSONObject createLoginCredentialPayload(String login, String requestId) {
-
+  private JSONObject createLoginCredentialPayload(String login) {
     JSONObject dataPayload = new JSONObject();
     JSONObject requestFieldPayload = new JSONObject();
     requestFieldPayload.put("login", login);
     requestFieldPayload.put("action", "OK");
     requestFieldPayload.put("host", "system.t-mobilebankowe.pl");
     dataPayload.put("request", requestFieldPayload);
-    addAgentDataToPayload(dataPayload, requestId);
-
+    RequestBuilderTool.addAgentDataToPayload(dataPayload, requestId);
     return dataPayload;
   }
 }

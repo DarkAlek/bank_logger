@@ -3,12 +3,20 @@ import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import models.Account;
 import org.json.simple.parser.ParseException;
+import scraper.CryptoEngine;
 import scraper.TmobileScraper;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import static scraper.Credentials.STATIC_LOGIN;
 import static scraper.Credentials.STATIC_PASSWORD;
@@ -18,6 +26,7 @@ class Main {
     final WebClient client = initClient();
     final TmobileScraper scraper = new TmobileScraper(STATIC_LOGIN, STATIC_PASSWORD, client);  // here login and password to your account :D
     try{
+      CryptoEngine.setInvocable(initInvocableEngine());
       List<Account> accounts = scrapeAccountData(scraper);
       printAccountInformationData(accounts);
     }
@@ -43,6 +52,15 @@ class Main {
     client.getCookieManager().setCookiesEnabled(true);
     client.getOptions().setTimeout(1000000);
     return client;
+  }
+
+  private static Invocable initInvocableEngine() throws FileNotFoundException, ScriptException {
+    ScriptEngineManager manager = new ScriptEngineManager();
+    ScriptEngine engine = manager.getEngineByName("JavaScript");
+    String file = Objects.requireNonNull(CryptoEngine.class.getClassLoader().getResource("javascript_method_provider.js")).getFile();
+    Reader reader = new FileReader(file);
+    engine.eval(reader);
+    return (Invocable) engine;
   }
 
   private static List<Account> scrapeAccountData(TmobileScraper scraper) throws NoSuchMethodException, ScriptException, IOException, ParseException {
