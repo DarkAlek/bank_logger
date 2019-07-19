@@ -26,9 +26,9 @@ public class PasswordCredentialRequest extends RequestBuilderTool {
   public WebRequest buildRequest(HashMap<String, String> requiredData) throws ScriptException, NoSuchMethodException {
     addHeaders(requiredData.get("xSessionId"));
     addPayload(createPasswordCredentialPayload(
-            requiredData.get("maskedPassword"),
-            requiredData.get("flowId"),
-            requiredData.get("actionToken")));
+      requiredData.get("maskedPassword"),
+      requiredData.get("flowId"),
+      requiredData.get("actionToken")));
     return request;
   }
 

@@ -39,7 +39,7 @@ public class CryptoEngine {
   }
 
 
-  public static Invocable getInvocable() {
+  private static Invocable getInvocable() {
     return invocable;
   }
 

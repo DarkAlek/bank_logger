@@ -22,13 +22,13 @@ public class Account {
   @Override
   public String toString() {
     return "Account{" +
-            "accountName='" + accountName + '\'' +
-            ", accountBalance='" + accountBalance + '\'' +
-            ", accountCurrency='" + accountCurrency + '\'' +
-            ", accountNumber='" + accountNumber + '\'' +
-            ", accountOpenDate='" + accountOpenDate + '\'' +
-            ", accountDescription='" + accountDescription + '\'' +
-            ", accountOwner='" + accountOwner + '\'' +
-            '}';
+        "accountName='" + accountName + '\'' +
+        ", accountBalance='" + accountBalance + '\'' +
+        ", accountCurrency='" + accountCurrency + '\'' +
+        ", accountNumber='" + accountNumber + '\'' +
+        ", accountOpenDate='" + accountOpenDate + '\'' +
+        ", accountDescription='" + accountDescription + '\'' +
+        ", accountOwner='" + accountOwner + '\'' +
+      '}';
   }
 }

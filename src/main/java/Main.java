@@ -32,7 +32,7 @@ class Main {
     }
     catch(ParseException|IOException|ScriptException|NoSuchMethodException|FailingHttpStatusCodeException|NullPointerException e){
       if(e instanceof IOException)
-        System.out.println("ERROR: Problem with request sending");
+        System.out.println("ERROR: Problem with request sending or file reading");
       if(e instanceof  ParseException)
         System.out.println("ERROR: Problem with JSON parsing");
       if(e instanceof ScriptException || e instanceof NoSuchMethodException)

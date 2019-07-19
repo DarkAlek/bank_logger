@@ -13,7 +13,7 @@ import java.util.Objects;
 
 class BaseScraperTest {
 
-  WebClient client = initClient();
+  final WebClient client = initClient();
 
   private static WebClient initClient() {
     WebClient client = new WebClient();

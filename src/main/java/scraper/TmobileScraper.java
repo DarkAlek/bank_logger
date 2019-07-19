@@ -68,13 +68,13 @@ public class TmobileScraper {
     for (Object account : addedAccountsList) {
       JSONObject jsonAccount = (JSONObject) account;
       accountsFinalData.add(new Account(
-              AccountResponseParser.extractAccountName(jsonAccount),
-              AccountResponseParser.extractAccountBalance(jsonAccount),
-              AccountResponseParser.extractAccountCurrency(jsonAccount),
-              AccountResponseParser.extractAccountNumber(jsonAccount),
-              AccountResponseParser.extractAccountOpenDate(jsonAccount),
-              AccountResponseParser.extractAccountDescription(jsonAccount),
-              AccountResponseParser.extractAccountOwner(jsonAccount)));
+        AccountResponseParser.extractAccountName(jsonAccount),
+        AccountResponseParser.extractAccountBalance(jsonAccount),
+        AccountResponseParser.extractAccountCurrency(jsonAccount),
+        AccountResponseParser.extractAccountNumber(jsonAccount),
+        AccountResponseParser.extractAccountOpenDate(jsonAccount),
+        AccountResponseParser.extractAccountDescription(jsonAccount),
+        AccountResponseParser.extractAccountOwner(jsonAccount)));
     }
     return accountsFinalData;
   }
