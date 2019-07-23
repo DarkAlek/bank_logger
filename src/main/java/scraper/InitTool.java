@@ -25,7 +25,7 @@ public class InitTool {
   public static Invocable initInvocableEngine() throws FileNotFoundException, ScriptException {
     ScriptEngineManager manager = new ScriptEngineManager();
     ScriptEngine engine = manager.getEngineByName("JavaScript");
-    String file = Objects.requireNonNull(CryptoEngine.class.getClassLoader().getResource("javascript_method_provider.js")).getFile();
+    String file = Objects.requireNonNull(ClassLoader.getSystemResource("javascript_method_provider.js")).getFile();
     Reader reader = new FileReader(file);
     engine.eval(reader);
     return (Invocable) engine;
