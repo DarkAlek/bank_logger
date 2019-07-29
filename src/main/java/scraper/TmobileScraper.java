@@ -7,8 +7,8 @@ import models.Account;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
-import scraper.parser.LoginResponseParser;
-import scraper.parser.AccountResponseParser;
+import scraper.unit.parser.LoginResponseParser;
+import scraper.unit.parser.AccountResponseParser;
 import scraper.requests.*;
 
 import javax.script.ScriptException;

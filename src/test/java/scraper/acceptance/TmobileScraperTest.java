@@ -1,10 +1,13 @@
-package scraper;
+package scraper.acceptance;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import models.Account;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
+import scraper.CryptoEngine;
+import scraper.InitTool;
+import scraper.TmobileScraper;
 
 import javax.script.ScriptException;
 import java.io.FileNotFoundException;
