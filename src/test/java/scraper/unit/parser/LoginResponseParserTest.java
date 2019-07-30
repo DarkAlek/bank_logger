@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import scraper.parser.LoginResponseParser;
 
 import static org.junit.Assert.*;
 
