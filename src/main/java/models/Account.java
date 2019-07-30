@@ -21,7 +21,7 @@ public class Account {
 
   @Override
   public String toString() {
-    return "Account{" +
+    return "\nAccount{" +
         "accountName='" + accountName + '\'' +
         ", accountBalance='" + accountBalance + '\'' +
         ", accountCurrency='" + accountCurrency + '\'' +
