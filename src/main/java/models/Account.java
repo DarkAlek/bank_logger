@@ -29,6 +29,6 @@ public class Account {
         ", accountOpenDate='" + accountOpenDate + '\'' +
         ", accountDescription='" + accountDescription + '\'' +
         ", accountOwner='" + accountOwner + '\'' +
-      '}';
+      "}\n";
   }
 }
